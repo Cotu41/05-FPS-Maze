@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://StartMenu.gd" type="Script" id=1]
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 602.0
+color = Color( 0, 0, 0, 0.854902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -283.74
+margin_top = 45.0
+margin_right = 172.26
+margin_bottom = 64.0
+text = "Are you brave enough..."
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.516
+anchor_right = 0.516
+margin_left = -682.881
+margin_top = 76.7808
+margin_right = -226.881
+margin_bottom = 95.7808
+rect_scale = Vector2( 3, 3 )
+text = "for THE HAUNTED DUNGEON?"
+align = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.514
+anchor_top = 1.0
+anchor_right = 0.514
+anchor_bottom = 1.0
+margin_left = -96.7696
+margin_top = -265.324
+margin_right = 97.2304
+margin_bottom = -182.324
+text = "ENTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[connection signal="pressed" from="Button" to="." method="enter_game"]

@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sounds/Jordan-Winslow-Invincible.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Scripts/Maze3D.gd" type="Script" id=3]
+[ext_resource path="res://HUD.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Menu.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.4, 0.1, 0.4 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.916084 )
+colors = PoolColorArray( 0.118164, 0.6875, 0, 1, 0.289063, 1, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = SubResource( 4 )
+region_rect = Rect2( 0, 0, 2048, 1 )
+
+[node name="Game" type="Spatial"]
+
+[node name="Maze3D" type="Spatial" parent="."]
+script = ExtResource( 3 )
+
+[node name="Player" type="KinematicBody" parent="."]
+script = ExtResource( 1 )
+
+[node name="Body" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.1, 0 )
+shape = SubResource( 1 )
+
+[node name="Feet" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+shape = SubResource( 2 )
+
+[node name="Pivot" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79071, 0 )
+
+[node name="Camera" type="Camera" parent="Player/Pivot"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Menu" parent="UI" instance=ExtResource( 6 )]
+visible = false
+
+[node name="HUD" type="Control" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -327.0
+margin_top = -204.0
+margin_right = -14.0
+margin_bottom = -11.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="ProgressBar" parent="UI/HUD"]
+anchor_left = 1.009
+anchor_top = 1.0
+anchor_right = 1.009
+anchor_bottom = 1.0
+margin_left = -287.817
+margin_top = -37.0
+margin_right = -4.81702
+margin_bottom = -2.0
+custom_styles/fg = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+value = 60.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/HUD"]
+anchor_left = 0.088
+anchor_top = 0.898
+anchor_right = 0.088
+anchor_bottom = 0.898
+margin_left = 5.0
+margin_top = -18.5292
+margin_right = 151.914
+margin_bottom = 18.4708
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Health"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="UI/HUD"]
+anchor_left = 1.036
+anchor_top = -2.036
+anchor_right = 1.036
+anchor_bottom = -2.036
+margin_left = -172.981
+margin_top = 12.4333
+margin_right = -15.9807
+margin_bottom = 26.4333
+text = "Objective: Find the Door"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -7.068
+autoplay = true

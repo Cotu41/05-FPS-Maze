@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/DeathMenu.tscn" type="PackedScene" id=2]
+
+[node name="WinMenu" instance=ExtResource( 2 )]
+
+[node name="ColorRect" parent="." index="0"]
+color = Color( 0, 0, 0, 0.854902 )
+
+[node name="Label" parent="." index="1"]
+text = "Congratulations, adventurer!"
+
+[node name="Label2" parent="." index="2"]
+rect_scale = Vector2( 3, 3 )
+text = "You beat the dungeon!"
+
+[node name="Button" parent="." index="3"]
+text = "DELVE AGAIN"
